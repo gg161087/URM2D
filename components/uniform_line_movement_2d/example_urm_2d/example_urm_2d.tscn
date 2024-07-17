@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbrfmr205aan0"]
+
+[ext_resource type="Script" path="res://components/uniform_line_movement_2d/example_urm_2d/example_urm_2d.gd" id="1_3ft7s"]
+[ext_resource type="Texture2D" uid="uid://dgj60lc3ldklx" path="res://icon.svg" id="1_4sk7m"]
+[ext_resource type="Script" path="res://components/uniform_line_movement_2d/urm_2d.gd" id="3_rxbtk"]
+
+[node name="example_urm_2d" type="CharacterBody2D"]
+script = ExtResource("1_3ft7s")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("1_4sk7m")
+
+[node name="URM2D" type="Node" parent="." node_paths=PackedStringArray("character")]
+script = ExtResource("3_rxbtk")
+character = NodePath("..")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
